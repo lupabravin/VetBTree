@@ -1,0 +1,20 @@
+﻿  bt.c
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(12): warning C4022: 'fwrite': incompatibilidade de ponteiro para parâmetro real 1
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(24): warning C4028: parâmetro formal 1 diferente da declaração
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(24): warning C4028: parâmetro formal 2 diferente da declaração
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(24): warning C4028: parâmetro formal 3 diferente da declaração
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(24): warning C4028: parâmetro formal 4 diferente da declaração
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(37): warning C4047: 'função': 'Page *' difere em níveis de indireção de 'Page **'
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(37): warning C4024: 'readBT': tipos diferentes para parâmetro formal e real 2
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(39): warning C4047: 'função': 'Page *' difere em níveis de indireção de 'Page **'
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(39): warning C4024: 'searchNode': tipos diferentes para parâmetro formal e real 2
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(54): warning C4047: 'função': 'Page *' difere em níveis de indireção de 'Page **'
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(54): warning C4024: 'insertNode': tipos diferentes para parâmetro formal e real 3
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(55): warning C4047: 'função': 'Page *' difere em níveis de indireção de 'Page **'
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(55): warning C4024: 'writeBT': tipos diferentes para parâmetro formal e real 2
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(60): warning C4047: 'função': 'Page *' difere em níveis de indireção de 'Page **'
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(60): warning C4024: 'splitPage': tipos diferentes para parâmetro formal e real 3
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(61): warning C4047: 'função': 'Page *' difere em níveis de indireção de 'Page **'
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(61): warning C4024: 'writeBT': tipos diferentes para parâmetro formal e real 2
+c:\users\t-gamer\source\repos\vetbtree\vetbtree\bt.c(171): warning C4101: 'mid': variável local não referenciada
+  vetBTree.vcxproj -> C:\Users\T-Gamer\source\repos\vetBTree\Debug\vetBTree.exe
