@@ -5,6 +5,7 @@ typedef struct page Page;
 
 int getRoot()
 {
+	openIndexFile();
 	fseek(index, 0, SEEK_SET);
 
 	if (fread(&root, sizeof(int), 1, index) == 0)
@@ -85,6 +86,13 @@ int createRoot(int key, int left, int right)
 	pageinit(&newPage);
 	newPage.key[0] = key;
 	newPage.child[0] = left;
+
+	if (right == root && right == left)
+	{
+		rrn = root + 1;
+		right += 2;
+	}
+
 	newPage.child[1] = right;
 
 	if (key == -1)
@@ -184,11 +192,27 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	workkeys[j] = key;
 	workchil[j + 1] = r_child;
 	*promo_r_child = getpage();
-
-	if (*promo_r_child == 0)
-		*promo_r_child = 1;
-
 	pageinit(p_newpage);
+
+	if (*promo_r_child == root)
+	{
+		*promo_r_child = root+1;
+		Page p_r_newpage;
+		pageinit(&p_r_newpage);
+		p_oldpage->key[0] = workkeys[0];
+		p_oldpage->key[1] = workkeys[1];
+		p_oldpage->key[2] = NIL;
+		p_newpage->child[0] = root;
+		p_newpage->key[0] = workkeys[2];
+		p_r_newpage.key[0] = key;
+		writeBT(root + 2, &p_r_newpage);
+		p_newpage->child[1] = root + 2;
+		*promo_key = workkeys[MIN];
+		return;
+	}
+
+
+	
 	for (j = 0; j < MIN; j++) {
 		p_oldpage->key[j] = workkeys[j];
 		p_oldpage->child[j] = workchil[j];

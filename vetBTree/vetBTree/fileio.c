@@ -48,7 +48,7 @@ void closeIndexFile()
 int insertRegister(DogControl newControl, DogData newData)
 {
 
-	int promoted, promo_rrn = 0, promo_key = 0;
+	int promoted, promo_rrn, promo_key;
 
 	//Insert Dog Control Info to file (MAIN FILE 1)
 	int rrnControl = fseek(control, 0, SEEK_END);

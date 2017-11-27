@@ -1,34 +1,5 @@
-﻿  vetBTree.c
-c:\ed2\vetbtree\vetbtree\vetbtree\vetbtree.c(32): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1272): note: see declaration of 'scanf'
-c:\ed2\vetbtree\vetbtree\vetbtree\vetbtree.c(50): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\conio.h(452): note: see declaration of 'getch'
-  fileio.c
-c:\ed2\vetbtree\vetbtree\vetbtree\fileio.c(8): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\ed2\vetbtree\vetbtree\vetbtree\fileio.c(21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\ed2\vetbtree\vetbtree\vetbtree\fileio.c(34): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\ed2\vetbtree\vetbtree\vetbtree\fileio.c(36): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
-c:\ed2\vetbtree\vetbtree\vetbtree\fileio.c(65): warning C4133: 'function': incompatible types - from 'int *' to 'short *'
-c:\ed2\vetbtree\vetbtree\vetbtree\fileio.c(65): warning C4133: 'function': incompatible types - from 'int *' to 'char *'
-  data.c
-c:\ed2\vetbtree\vetbtree\vetbtree\data.c(21): warning C4013: 'gets' undefined; assuming extern returning int
-c:\ed2\vetbtree\vetbtree\vetbtree\data.c(36): warning C4013: 'insertRegister' undefined; assuming extern returning int
-c:\ed2\vetbtree\vetbtree\vetbtree\data.c(14): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1272): note: see declaration of 'scanf'
-c:\ed2\vetbtree\vetbtree\vetbtree\data.c(39): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\conio.h(452): note: see declaration of 'getch'
-  bt.c
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(12): warning C4022: 'fwrite': pointer mismatch for actual parameter 1
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(24): warning C4028: formal parameter 1 different from declaration
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(24): warning C4028: formal parameter 2 different from declaration
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(24): warning C4028: formal parameter 3 different from declaration
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(24): warning C4028: formal parameter 4 different from declaration
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(27): warning C4101: 'teste': unreferenced local variable
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(172): warning C4101: 'mid': unreferenced local variable
-  Generating Code...
+﻿  bt.c
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(13): warning C4022: 'fwrite': incompatibilidade de ponteiro para parâmetro real 1
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(28): warning C4101: 'teste': variável local não referenciada
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(180): warning C4101: 'mid': variável local não referenciada
   vetBTree.vcxproj -> C:\ed2\VetBTree\vetBTree\Debug\vetBTree.exe
-  vetBTree.vcxproj -> C:\ed2\VetBTree\vetBTree\Debug\vetBTree.pdb (Partial PDB)

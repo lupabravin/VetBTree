@@ -28,7 +28,7 @@ int createRoot(int key, int left, int right);
 int createTree();
 int getpage();
 int getRoot(); 
-int insert(short rrn, char key, short *promo_r_child, char *promo_key);
+int insert(int rrn, int key, int *promo_r_child, int *promo_key);
 void insertNode(int key, int r_child, Page *p_page);
 void pageinit(Page *p_page);
 void setRoot(int root);
