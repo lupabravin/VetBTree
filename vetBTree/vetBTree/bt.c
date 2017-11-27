@@ -22,8 +22,9 @@ int createTree()
 
 int insert(int rrn, int key, int * promo_child, int * promo_key)
 {
-	Page * thisPage;
+	Page thisPage;
 	Page newPage;
+	int teste;
 	int found, promoted;
 	int pos, promotedRRN, promotedKey;
 
@@ -42,14 +43,14 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 		printf("Error: attempt to insert duplicate key: %c \n\007", key);
 		return(0);
 	}
-	promoted = insert(thisPage->child[pos], key, &promotedRRN, &promotedKey);
+	promoted = insert(thisPage.child[pos], key, &promotedRRN, &promotedKey);
 
 	if (!promoted)
 	{
 		return 0;
 	}
 
-	if (thisPage->keycount < MAX)
+	if (thisPage.keycount < MAX)
 	{
 		insertNode(promotedKey, promotedRRN, &thisPage);
 		writeBT(rrn, &thisPage);
@@ -101,7 +102,9 @@ void readBT(int rrn, Page *page_ptr)
 	int addr;
 	addr = (rrn * sizeof(Page)) + 4;
 	fseek(index, addr, 0);
-	fread(&page_ptr, sizeof(Page), 1, index);
+	Page aux;
+	fread(&aux, sizeof(Page), 1, index);
+	*page_ptr = aux;
 
 	return;
 }
@@ -109,18 +112,12 @@ void readBT(int rrn, Page *page_ptr)
 void writeBT(int rrn, Page *page_ptr)
 {
 	int addr;
-	Page * aux = malloc(sizeof(Page));
-	aux = page_ptr;
-
+	Page aux = *page_ptr;
 	rewind(index);
 	addr = (rrn * sizeof(Page))+4;
 	fseek(index, addr , 0);
 	fwrite(&aux, sizeof(Page), 1, index);
 	fclose(index);
-
-	/*
-	fread(&teste, sizeof(Page), 1, index);
-	readBT(0, &teste);*/
 	return;
 }
 

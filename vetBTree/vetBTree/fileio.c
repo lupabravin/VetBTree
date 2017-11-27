@@ -5,7 +5,7 @@
 
 void openDataFile()
 {
-	data = fopen("data.dat", "a+");
+	data = fopen("data.dat", "a+b");
 	/*
 	if ((data = fopen("data.dat", "r+")) == 0)
 		data = fopen("data.dat", "w+");*/
@@ -18,7 +18,7 @@ void closeDataFile()
 
 void openControlFile()
 {
-	control = fopen("control.dat", "a+");
+	control = fopen("control.dat", "a+b");
 	/*if ((control = fopen("control.dat", "r+")) == 0)
 		control = fopen("control.dat", "w+");*/
 }
@@ -31,9 +31,9 @@ void closeControlFile()
 int openIndexFile()
 {
 
-	if ((index = fopen("index.dat", "r+")) == 0)
+	if ((index = fopen("index.dat", "r+b")) == 0)
 	{
-		index = fopen("index.dat", "w+");
+		index = fopen("index.dat", "w+b");
 		return 0;
 	}
 	else
