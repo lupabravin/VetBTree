@@ -87,11 +87,11 @@ int createRoot(int key, int left, int right)
 	newPage.key[0] = key;
 	newPage.child[0] = left;
 
-	if (right == root && right == left)
+	/*if (right == root && right == left)
 	{
 		rrn = root + 1;
 		right += 2;
-	}
+	}*/
 
 	newPage.child[1] = right;
 
@@ -146,8 +146,10 @@ void pageinit(Page *p_page)
 int getpage()
 {
 	int addr;
-	addr = fseek(index, 0, SEEK_END) - 4;
+	openIndexFile();
 
+	fseek(index, 0, SEEK_END) - 4;
+	addr = ftell(index);
 	if (addr < 0)
 		return 0;
 
@@ -194,7 +196,7 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	*promo_r_child = getpage();
 	pageinit(p_newpage);
 
-	if (*promo_r_child == root)
+	/*if (*promo_r_child == root)
 	{
 		*promo_r_child = root+1;
 		Page p_r_newpage;
@@ -209,10 +211,8 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 		p_newpage->child[1] = root + 2;
 		*promo_key = workkeys[MIN];
 		return;
-	}
+	}*/
 
-
-	
 	for (j = 0; j < MIN; j++) {
 		p_oldpage->key[j] = workkeys[j];
 		p_oldpage->child[j] = workchil[j];

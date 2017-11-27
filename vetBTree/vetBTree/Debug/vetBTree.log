@@ -1,5 +1,6 @@
 ﻿  bt.c
 c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(13): warning C4022: 'fwrite': incompatibilidade de ponteiro para parâmetro real 1
 c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(28): warning C4101: 'teste': variável local não referenciada
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(180): warning C4101: 'mid': variável local não referenciada
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(151): warning C4552: '-': operador não tem efeito; esperado operador com efeito colateral
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(182): warning C4101: 'mid': variável local não referenciada
   vetBTree.vcxproj -> C:\ed2\VetBTree\vetBTree\Debug\vetBTree.exe
