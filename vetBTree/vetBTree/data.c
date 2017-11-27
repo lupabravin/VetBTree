@@ -35,7 +35,7 @@ void insertData() {
 
 	if (insertRegister(newControl, newData) == 1)
 	{
-		printf("Register Sucessfully Added!");
+		
 		getch();
 		system("cls");
 	}

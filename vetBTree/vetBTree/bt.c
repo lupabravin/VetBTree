@@ -41,7 +41,7 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 	if (found)
 	{
 		printf("Error: attempt to insert duplicate key: %c \n\007", key);
-		return(0);
+		return 0;
 	}
 	promoted = insert(thisPage.child[pos], key, &promotedRRN, &promotedKey);
 
@@ -54,6 +54,7 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 	{
 		insertNode(promotedKey, promotedRRN, &thisPage);
 		writeBT(rrn, &thisPage);
+		printf("Register Sucessfully Added!");
 		return 0;
 	}
 	else
@@ -61,6 +62,7 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 		splitPage(promotedKey, promotedRRN, &thisPage, promo_key, promo_child, &newPage);
 		writeBT(rrn, &thisPage);
 		writeBT(*promo_child, &newPage);
+		printf("Register Sucessfully Added!");
 		return 1;
 	}
 
@@ -68,6 +70,7 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 
 void setRoot(int root)
 {
+	openIndexFile();
 	fseek(index, 0, SEEK_SET);
 	fwrite(&root, sizeof(int), 1, index);
 	closeIndexFile();
@@ -111,6 +114,7 @@ void readBT(int rrn, Page *page_ptr)
 
 void writeBT(int rrn, Page *page_ptr)
 {
+	openIndexFile();
 	int addr;
 	Page aux = *page_ptr;
 	rewind(index);
@@ -180,18 +184,22 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	workkeys[j] = key;
 	workchil[j + 1] = r_child;
 	*promo_r_child = getpage();
+
+	if (*promo_r_child == 0)
+		*promo_r_child = 1;
+
 	pageinit(p_newpage);
 	for (j = 0; j < MIN; j++) {
 		p_oldpage->key[j] = workkeys[j];
 		p_oldpage->child[j] = workchil[j];
-		p_newpage->key[j] = workkeys[j + 1 + MIN];
+		p_newpage->key[j] = workkeys[j +  MIN];
 		p_newpage->child[j] = workchil[j + 1 + MIN];
 		p_oldpage->key[j + MIN] = NIL;
 		p_oldpage->child[j + 1 + MIN] = NIL;
 	}
 	p_oldpage->child[MIN] = workchil[MIN];
 	p_newpage->child[MIN] = workchil[j + 1 + MIN];
-	p_newpage->keycount = MAX - MIN;
+	p_newpage->keycount = MIN;
 	p_oldpage->keycount = MIN;
 	*promo_key = workkeys[MIN];
 }

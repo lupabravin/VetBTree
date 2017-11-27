@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 #define MAX 3
-#define MIN MAX/2
+#define MIN 2
 #define NIL (-1)
 #define NOKEY '@'
 #define FALSE 0
