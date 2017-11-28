@@ -7,6 +7,8 @@
 FILE * data;
 FILE * control;
 FILE * index;
+FILE * aux1;
+FILE * aux2;
 
 
 void openDataFile();

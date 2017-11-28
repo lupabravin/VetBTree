@@ -296,3 +296,49 @@ int searchRegister(int key, int page_rrn)
 	return found;
 };
 
+void marriedSearch(int code1, int code2)
+{
+	searchPages(root, code1, code2);
+}
+
+void searchPages(int rrn, int code1, int code2)
+{
+	Page currentPage, lastPage;
+	int pos = 0, key;
+	readBT(rrn, &currentPage);
+
+	for (pos = 0; pos < currentPage.keycount; pos++)
+	{
+		if (currentPage.child[pos] != NIL)
+		{
+			lastPage = currentPage;
+			searchPages(currentPage.child[pos], code1, code2);
+			
+			if (lastPage.key[pos] >= code1)
+				Add(aux1, lastPage.key[pos]);
+
+			if (lastPage.key[pos] <= code2)
+				Add(aux2, lastPage.key[pos]);
+			
+			searchPages(currentPage.child[pos + 1], code1, code2);
+		}
+		else
+		{
+			for (key = 0; key < currentPage.keycount; key++)
+			{
+				if (key >= code1)
+					Add(aux1, key);
+
+				if (key <= code2)
+					Add(aux2, key);
+			}
+
+			break;
+		}
+	}
+}
+
+void Add(FILE * file, int key )
+{
+	return;
+}

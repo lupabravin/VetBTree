@@ -69,7 +69,5 @@ int insertRegister(DogControl newControl, DogData newData)
 		root = createRoot(promo_key, root, promo_rrn);
 
 	return 1;
-
-
 }
 

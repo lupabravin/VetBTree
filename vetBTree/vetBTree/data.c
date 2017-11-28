@@ -78,6 +78,7 @@ void printData(int key)
 	DogControl node;
 	DogData dog;
 	openControlFile();
+	openDataFile();
 	rewind(control);
 	int addr;
 	fflush(stdin);
@@ -89,10 +90,9 @@ void printData(int key)
 			printf("\n Control Code: %d", key);
 			printf("\n Dog Code: %d ", node.dogCode);
 			printf("\n Medicine: %s ", node.medicine);
-			printf("\n Apllying Doctor: %s ", node.doctor);
+			printf("\n Applying Doctor: %s ", node.doctor);
 
-			closeDataFile();
-			openDataFile();
+
 			rewind(data);
 
 			addr = fseek(data, (sizeof(DogData) * (node.dogCode-1) + 4), 0);
@@ -100,8 +100,9 @@ void printData(int key)
 			printf("\n Dog's Name: %s ", dog.name);
 			printf("\n Dog's Race: %s", dog.race);
 			printf("\n");
-
 		}
 	}
-	openControlFile();
+
+	closeControlFile();
+	closeDataFile();
 }

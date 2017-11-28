@@ -40,3 +40,5 @@ void printPage(Page * currentPage);
 void printData(int key);
 void printRegister(int key, Page * currentPage);
 int searchRegister(int key, int root);
+void Add();
+void searchPages(int rrn, int code1, int code2);
