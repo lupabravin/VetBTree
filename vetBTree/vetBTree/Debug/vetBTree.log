@@ -1,6 +1,16 @@
-﻿  bt.c
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(13): warning C4022: 'fwrite': incompatibilidade de ponteiro para parâmetro real 1
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(28): warning C4101: 'teste': variável local não referenciada
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(151): warning C4552: '-': operador não tem efeito; esperado operador com efeito colateral
-c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(182): warning C4101: 'mid': variável local não referenciada
+﻿  data.c
+c:\ed2\vetbtree\vetbtree\vetbtree\data.c(20): warning C4013: 'setLastCode' indefinido; assumindo extern retornando int
+c:\ed2\vetbtree\vetbtree\vetbtree\data.c(23): warning C4013: 'gets' indefinido; assumindo extern retornando int
+c:\ed2\vetbtree\vetbtree\vetbtree\data.c(38): warning C4013: 'insertRegister' indefinido; assumindo extern retornando int
+c:\ed2\vetbtree\vetbtree\vetbtree\data.c(15): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: consulte a declaração de 'scanf'
+c:\ed2\vetbtree\vetbtree\vetbtree\data.c(40): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\conio.h(452): note: consulte a declaração de 'getch'
+  bt.c
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(14): warning C4022: 'fwrite': incompatibilidade de ponteiro para parâmetro real 1
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(29): warning C4101: 'teste': variável local não referenciada
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(152): warning C4552: '-': operador não tem efeito; esperado operador com efeito colateral
+c:\ed2\vetbtree\vetbtree\vetbtree\bt.c(178): warning C4101: 'mid': variável local não referenciada
+  Gerando Código...
+c:\ed2\vetbtree\vetbtree\vetbtree\data.c(62): warning C4716: 'setLastCode': deve retornar um valor
   vetBTree.vcxproj -> C:\ed2\VetBTree\vetBTree\Debug\vetBTree.exe

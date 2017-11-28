@@ -1,5 +1,6 @@
 #include "bt.h"
 #include "fileio.h"
+#include "data.h"
 
 typedef struct page Page;
 
@@ -156,11 +157,6 @@ int getpage()
 	return (addr / sizeof(Page));
 }
 
-int getLastCode()
-{
-	return 1;
-}
-
 int searchNode(int key, Page *p_page, int *pos)
 {
 	int i;
@@ -226,6 +222,13 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	p_newpage->keycount = MIN;
 	p_oldpage->keycount = MIN;
 	*promo_key = workkeys[MIN];
+
+	if (p_newpage->key[0] == *promo_key)
+	{
+		p_newpage->key[0] = key;
+		p_newpage->key[1] = NIL;
+	}
+
 }
 
 void insertNode(int key, int r_child, Page *p_page)
@@ -239,3 +242,27 @@ void insertNode(int key, int r_child, Page *p_page)
 	p_page->key[j] = key;
 	p_page->child[j + 1] = r_child;
 }
+
+void listAll(int rrn)
+{
+	Page currentPage, lastPage;
+	int pos = 0;
+	readBT(rrn, &currentPage);
+
+	for (pos = 0; pos < currentPage.keycount; pos++)
+	{
+		if (currentPage.child[pos] != NIL)
+		{
+			lastPage = currentPage;
+			listAll(currentPage.child[pos]);
+			printData(lastPage.key[pos]);
+			listAll(currentPage.child[pos+1]);
+		}
+		else
+		{
+			printPage(&currentPage);
+			break;
+		}
+	}
+}
+

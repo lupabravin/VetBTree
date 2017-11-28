@@ -35,3 +35,7 @@ void setRoot(int root);
 int searchNode(int key, Page *p_page, int *pos);
 void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo_r_child, Page *p_newpage);
 int getLastCode();
+void listAll(int rrn);
+void printPage(Page * currentPage);
+void printData(int key);
+void printRegister(int key, Page * currentPage);

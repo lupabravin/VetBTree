@@ -5,10 +5,10 @@
 
 void openDataFile()
 {
-	data = fopen("data.dat", "a+b");
-	/*
+	//data = fopen("data.dat", "a+b");
+
 	if ((data = fopen("data.dat", "r+")) == 0)
-		data = fopen("data.dat", "w+");*/
+		data = fopen("data.dat", "w+");
 }
 
 void closeDataFile()
@@ -18,9 +18,9 @@ void closeDataFile()
 
 void openControlFile()
 {
-	control = fopen("control.dat", "a+b");
-	/*if ((control = fopen("control.dat", "r+")) == 0)
-		control = fopen("control.dat", "w+");*/
+	//control = fopen("control.dat", "a+b");
+	if ((control = fopen("control.dat", "r+")) == 0)
+		control = fopen("control.dat", "w+");
 }
 
 void closeControlFile()
@@ -68,5 +68,6 @@ int insertRegister(DogControl newControl, DogData newData)
 
 	return 1;
 
-	
+
 }
+
