@@ -80,6 +80,7 @@ void printData(int key)
 	openControlFile();
 	rewind(control);
 	int addr;
+	fflush(stdin);
 
 	while (fread(&node, sizeof(DogControl), 1, control) != 0)
 	{
@@ -90,8 +91,11 @@ void printData(int key)
 			printf("\n Medicine: %s ", node.medicine);
 			printf("\n Apllying Doctor: %s ", node.doctor);
 
+			closeDataFile();
 			openDataFile();
-			addr = fseek(data, (sizeof(DogData) * node.dogCode) + 4, 0);
+			rewind(data);
+
+			addr = fseek(data, (sizeof(DogData) * (node.dogCode-1) + 4), 0);
 			fread(&dog, sizeof(DogData), 1, data);
 			printf("\n Dog's Name: %s ", dog.name);
 			printf("\n Dog's Race: %s", dog.race);

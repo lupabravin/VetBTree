@@ -47,6 +47,8 @@ void closeIndexFile()
 
 int insertRegister(DogControl newControl, DogData newData)
 {
+	openControlFile();
+	openDataFile();
 
 	int promoted, promo_rrn, promo_key;
 

@@ -127,8 +127,8 @@ void writeBT(int rrn, Page *page_ptr)
 	int addr;
 	Page aux = *page_ptr;
 	rewind(index);
-	addr = (rrn * sizeof(Page))+4;
-	fseek(index, addr , 0);
+	addr = (rrn * sizeof(Page)) + 4;
+	fseek(index, addr, 0);
 	fwrite(&aux, sizeof(Page), 1, index);
 	fclose(index);
 	return;
@@ -212,7 +212,7 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	for (j = 0; j < MIN; j++) {
 		p_oldpage->key[j] = workkeys[j];
 		p_oldpage->child[j] = workchil[j];
-		p_newpage->key[j] = workkeys[j +  MIN];
+		p_newpage->key[j] = workkeys[j + MIN];
 		p_newpage->child[j] = workchil[j + 1 + MIN];
 		p_oldpage->key[j + MIN] = NIL;
 		p_oldpage->child[j + 1 + MIN] = NIL;
@@ -223,10 +223,11 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	p_oldpage->keycount = MIN;
 	*promo_key = workkeys[MIN];
 
-	if (p_newpage->key[0] == *promo_key)
+	if (p_newpage->key[MIN - 2] == *promo_key)
 	{
-		p_newpage->key[0] = key;
-		p_newpage->key[1] = NIL;
+		p_newpage->key[MIN - 2] = key;
+		p_newpage->key[MIN -1] = NIL;
+		p_newpage->keycount = MIN - 1;
 	}
 
 }
@@ -256,7 +257,7 @@ void listAll(int rrn)
 			lastPage = currentPage;
 			listAll(currentPage.child[pos]);
 			printData(lastPage.key[pos]);
-			listAll(currentPage.child[pos+1]);
+			listAll(currentPage.child[pos + 1]);
 		}
 		else
 		{
@@ -265,4 +266,33 @@ void listAll(int rrn)
 		}
 	}
 }
+
+int searchRegister(int key, int page_rrn)
+{
+	int found = 0, position, i;
+	Page currentPage;
+	readBT(page_rrn, &currentPage);
+
+	found = searchNode(key, &currentPage, &position);
+
+	for (i = 0; i <= currentPage.keycount; i++)
+	{
+		if (found == 0)
+		{
+			if (currentPage.child[i] == -1)
+				return found;
+		
+			else
+				found = searchRegister(key, currentPage.child[i]);
+		}
+		else
+		{
+			printf("\n\nKey %d found in page %d, position %d", key, page_rrn, position);
+			printData(key);
+			break;
+		}
+	}
+
+	return found;
+};
 

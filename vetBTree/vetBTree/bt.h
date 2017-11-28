@@ -39,3 +39,4 @@ void listAll(int rrn);
 void printPage(Page * currentPage);
 void printData(int key);
 void printRegister(int key, Page * currentPage);
+int searchRegister(int key, int root);
