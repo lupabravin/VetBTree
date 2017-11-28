@@ -226,7 +226,7 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	if (p_newpage->key[MIN - 2] == *promo_key)
 	{
 		p_newpage->key[MIN - 2] = key;
-		p_newpage->key[MIN -1] = NIL;
+		p_newpage->key[MIN - 1] = NIL;
 		p_newpage->keycount = MIN - 1;
 	}
 
@@ -281,7 +281,7 @@ int searchRegister(int key, int page_rrn)
 		{
 			if (currentPage.child[i] == -1)
 				return found;
-		
+
 			else
 				found = searchRegister(key, currentPage.child[i]);
 		}
@@ -298,7 +298,22 @@ int searchRegister(int key, int page_rrn)
 
 void marriedSearch(int code1, int code2)
 {
+	aux1 = fopen("aux1.dat", "w+");
+	aux2 = fopen("aux2.dat", "w+");
+	int option;
+
 	searchPages(root, code1, code2);
+
+	printf("\n 1. Merge\n 2. Match\n\nSelect: ");
+	scanf("%d", &option);
+
+	if (option == 1)
+		mergeAndPrint();
+	else
+		matchAndPrint();
+
+	fclose(aux1);
+	fclose(aux2);
 }
 
 void searchPages(int rrn, int code1, int code2)
@@ -307,30 +322,32 @@ void searchPages(int rrn, int code1, int code2)
 	int pos = 0, key;
 	readBT(rrn, &currentPage);
 
-	for (pos = 0; pos < currentPage.keycount; pos++)
+	for (pos = 0; pos <= currentPage.keycount; pos++)
 	{
 		if (currentPage.child[pos] != NIL)
 		{
 			lastPage = currentPage;
 			searchPages(currentPage.child[pos], code1, code2);
-			
-			if (lastPage.key[pos] >= code1)
-				Add(aux1, lastPage.key[pos]);
 
-			if (lastPage.key[pos] <= code2)
-				Add(aux2, lastPage.key[pos]);
-			
-			searchPages(currentPage.child[pos + 1], code1, code2);
+			if (lastPage.key[pos] != -1)
+			{
+				if (lastPage.key[pos] >= code1)
+					Add(1, lastPage.key[pos]);
+
+				if (lastPage.key[pos] <= code2)
+					Add(2, lastPage.key[pos]);
+			}
+			//searchPages(currentPage.child[pos + 1], code1, code2);
 		}
 		else
 		{
 			for (key = 0; key < currentPage.keycount; key++)
 			{
-				if (key >= code1)
-					Add(aux1, key);
+				if (currentPage.key[key] >= code1)
+					Add(1, currentPage.key[key]);
 
-				if (key <= code2)
-					Add(aux2, key);
+				if (currentPage.key[key] <= code2)
+					Add(2, currentPage.key[key]);
 			}
 
 			break;
@@ -338,7 +355,43 @@ void searchPages(int rrn, int code1, int code2)
 	}
 }
 
-void Add(FILE * file, int key )
+void Add(int file, int key)
+{
+	if (file == 1)
+		fwrite(&key, sizeof(int), 1, aux1);
+	else
+		fwrite(&key, sizeof(int), 1, aux2);
+
+	return;
+}
+
+void mergeAndPrint()
+{
+	int key1, key2;
+	rewind(aux1);
+	rewind(aux2);
+
+	fread(&key2, sizeof(int), 1, aux2);
+
+	while (fread(&key1, sizeof(int), 1, aux1) != 0)
+	{
+		if (key1 == key2)
+		{
+			printData(key1);
+			fread(&key2, sizeof(int), 1, aux2);
+		}
+
+		if (key1 < key2)
+		{
+			printData(key2);
+		}
+
+
+	}
+
+}
+
+void matchAndPrint()
 {
 	return;
 }

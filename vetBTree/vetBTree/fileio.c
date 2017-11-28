@@ -45,6 +45,7 @@ void closeIndexFile()
 	fclose(index);
 }
 
+
 int insertRegister(DogControl newControl, DogData newData)
 {
 	openControlFile();

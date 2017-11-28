@@ -17,5 +17,6 @@ void openControlFile();
 void closeControlFile(); 
 int openIndexFile();
 void closeIndexFile();
+void openAuxFiles();
 
 
