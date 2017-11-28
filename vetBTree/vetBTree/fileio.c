@@ -51,7 +51,15 @@ int insertRegister(DogControl newControl, DogData newData)
 	openControlFile();
 	openDataFile();
 
-	int promoted, promo_rrn, promo_key;
+	int promoted, promo_rrn, promo_key, sucess = 1;
+
+	promoted = insert(root, newControl.controlCode, &promo_rrn, &promo_key, &sucess);
+	
+	if (sucess == 0)
+		return sucess;
+	
+	if (promoted)
+		root = createRoot(promo_key, root, promo_rrn);
 
 	//Insert Dog Control Info to file (MAIN FILE 1)
 	int rrnControl = fseek(control, 0, SEEK_END);
@@ -65,10 +73,6 @@ int insertRegister(DogControl newControl, DogData newData)
 	closeDataFile();
 	openDataFile();
 
-	promoted = insert(root, newControl.controlCode, &promo_rrn, &promo_key);
-	if (promoted)
-		root = createRoot(promo_key, root, promo_rrn);
-
-	return 1;
+	return sucess;
 }
 

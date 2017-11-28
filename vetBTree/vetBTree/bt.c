@@ -22,7 +22,7 @@ int createTree()
 	return createRoot(NIL, NIL, NIL);
 }
 
-int insert(int rrn, int key, int * promo_child, int * promo_key)
+int insert(int rrn, int key, int * promo_child, int * promo_key, int * sucess)
 {
 	Page thisPage;
 	Page newPage;
@@ -42,10 +42,12 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 	found = searchNode(key, &thisPage, &pos);
 	if (found)
 	{
-		printf("Error: attempt to insert duplicate key: %c \n\007", key);
+		printf("Error: attempt to insert duplicate key: %d ", key);
+		getch();
+		*sucess = 0;
 		return 0;
 	}
-	promoted = insert(thisPage.child[pos], key, &promotedRRN, &promotedKey);
+	promoted = insert(thisPage.child[pos], key, &promotedRRN, &promotedKey, &sucess);
 
 	if (!promoted)
 	{
@@ -56,7 +58,8 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 	{
 		insertNode(promotedKey, promotedRRN, &thisPage);
 		writeBT(rrn, &thisPage);
-		printf("Register Sucessfully Added!");
+		printf("Register %d Sucessfully Added!", key);
+		
 		return 0;
 	}
 	else
@@ -64,7 +67,8 @@ int insert(int rrn, int key, int * promo_child, int * promo_key)
 		splitPage(promotedKey, promotedRRN, &thisPage, promo_key, promo_child, &newPage);
 		writeBT(rrn, &thisPage);
 		writeBT(*promo_child, &newPage);
-		printf("Register Sucessfully Added!");
+		printf("Key %d Promoted!", promotedKey);
+		
 		return 1;
 	}
 
@@ -219,7 +223,7 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	}
 	p_oldpage->child[MIN] = workchil[MIN];
 	p_newpage->child[MIN] = workchil[j + 1 + MIN];
-	p_newpage->keycount = MIN;
+	p_newpage->keycount = MIN - 1;
 	p_oldpage->keycount = MIN;
 	*promo_key = workkeys[MIN];
 
@@ -227,7 +231,6 @@ void splitPage(int key, int r_child, Page *p_oldpage, int *promo_key, int *promo
 	{
 		p_newpage->key[MIN - 2] = key;
 		p_newpage->key[MIN - 1] = NIL;
-		p_newpage->keycount = MIN - 1;
 	}
 
 }
@@ -257,7 +260,10 @@ void listAll(int rrn)
 			lastPage = currentPage;
 			listAll(currentPage.child[pos]);
 			printData(lastPage.key[pos]);
-			listAll(currentPage.child[pos + 1]);
+
+			if (pos == (currentPage.keycount -1) && currentPage.child[pos + 1] != NIL)
+				listAll(currentPage.child[pos + 1]);
+
 		}
 		else
 		{
@@ -291,6 +297,9 @@ int searchRegister(int key, int page_rrn)
 			printData(key);
 			break;
 		}
+
+		if (found == 1) break;
+
 	}
 
 	return found;
@@ -371,27 +380,58 @@ void mergeAndPrint()
 	rewind(aux1);
 	rewind(aux2);
 
-	fread(&key2, sizeof(int), 1, aux2);
+	/*while (fread(&key1, sizeof(int), 1, aux1) != 0)
+		printf("\n%d", key1);
 
-	while (fread(&key1, sizeof(int), 1, aux1) != 0)
+	while (fread(&key2, sizeof(int), 1, aux2) != 0)
+		printf("\n%d", key2);
+
+	rewind(aux1);
+	rewind(aux2);*/
+
+	fread(&key1, sizeof(int), 1, aux1);
+
+	while (fread(&key2, sizeof(int), 1, aux2) == 1)
 	{
 		if (key1 == key2)
 		{
 			printData(key1);
-			fread(&key2, sizeof(int), 1, aux2);
+			fread(&key1, sizeof(int), 1, aux1);
 		}
 
-		if (key1 < key2)
+		else if (key1 > key2)
 		{
 			printData(key2);
 		}
-
-
 	}
 
+	while (fread(&key1, sizeof(int), 1, aux1) == 1)	
+		printData(key1);
 }
 
 void matchAndPrint()
 {
-	return;
+	int key1, key2;
+	rewind(aux1);
+	rewind(aux2);
+
+	/*while (fread(&key1, sizeof(int), 1, aux1) != 0)
+		printf("\n%d", key1);
+
+	while (fread(&key2, sizeof(int), 1, aux2) != 0)
+		printf("\n%d", key2);
+
+	rewind(aux1);
+	rewind(aux2);*/
+
+	fread(&key1, sizeof(int), 1, aux1);
+
+	while (fread(&key2, sizeof(int), 1, aux2) == 1)
+	{
+		if (key1 == key2)
+		{
+			printData(key1);
+			fread(&key1, sizeof(int), 1, aux1);
+		}
+	}
 }
