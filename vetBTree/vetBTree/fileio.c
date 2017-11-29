@@ -51,12 +51,12 @@ int insertRegister(DogControl newControl, DogData newData)
 	openControlFile();
 	openDataFile();
 
-	int promoted, promo_rrn, promo_key, sucess = 1;
+	int promoted, promo_rrn, promo_key, success = 1;
 
-	promoted = insert(root, newControl.controlCode, &promo_rrn, &promo_key, &sucess);
+	promoted = insert(root, newControl.controlCode, &promo_rrn, &promo_key, &success);
 	
-	if (sucess == 0)
-		return sucess;
+	if (success == 0)
+		return success;
 	
 	if (promoted)
 		root = createRoot(promo_key, root, promo_rrn);
@@ -73,6 +73,6 @@ int insertRegister(DogControl newControl, DogData newData)
 	closeDataFile();
 	openDataFile();
 
-	return sucess;
+	return success;
 }
 

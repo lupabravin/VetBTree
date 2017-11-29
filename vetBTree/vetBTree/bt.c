@@ -22,7 +22,7 @@ int createTree()
 	return createRoot(NIL, NIL, NIL);
 }
 
-int insert(int rrn, int key, int * promo_child, int * promo_key, int * sucess)
+int insert(int rrn, int key, int * promo_child, int * promo_key, int * success)
 {
 	Page thisPage;
 	Page newPage;
@@ -44,10 +44,10 @@ int insert(int rrn, int key, int * promo_child, int * promo_key, int * sucess)
 	{
 		printf("Error: attempt to insert duplicate key: %d ", key);
 		getch();
-		*sucess = 0;
+		*success = 0;
 		return 0;
 	}
-	promoted = insert(thisPage.child[pos], key, &promotedRRN, &promotedKey, &sucess);
+	promoted = insert(thisPage.child[pos], key, &promotedRRN, &promotedKey, &success);
 
 	if (!promoted)
 	{
@@ -58,7 +58,7 @@ int insert(int rrn, int key, int * promo_child, int * promo_key, int * sucess)
 	{
 		insertNode(promotedKey, promotedRRN, &thisPage);
 		writeBT(rrn, &thisPage);
-		printf("Register %d Sucessfully Added!", key);
+		printf("Register %d Successfully Added!", key);
 		
 		return 0;
 	}
